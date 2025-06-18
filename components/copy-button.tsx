@@ -2,6 +2,7 @@
 
 import * as React from "react"
 import { Button } from "@/components/ui/button"
+import { useI18n } from "@/lib/i18n/i18n-context"
 import { Check, Copy, Zap } from "lucide-react"
 
 interface CopyButtonProps {
@@ -13,6 +14,7 @@ interface CopyButtonProps {
 
 export function CopyButton({ text, context, apiName, functionName }: CopyButtonProps) {
   const [hasCopied, setHasCopied] = React.useState(false)
+  const { t } = useI18n()
 
   React.useEffect(() => {
     if (hasCopied) {
@@ -60,19 +62,19 @@ ${context || text}
       {hasCopied ? (
         <>
           <Check className="mr-1 h-3 w-3" />
-          Copied!
+          {t("api.copiedToClipboard")}
         </>
       ) : (
         <>
           {context ? (
             <>
               <Zap className="mr-1 h-3 w-3" />
-              Copy for AI
+              {t("api.copyForAi")}
             </>
           ) : (
             <>
               <Copy className="mr-1 h-3 w-3" />
-              Copy
+              {t("api.copyForAi")}
             </>
           )}
         </>

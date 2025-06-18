@@ -1,9 +1,13 @@
+"use client"
+
 import { notFound } from 'next/navigation'
 import { Header } from "@/components/header"
 import { ApiSidebar } from "@/components/api-sidebar"
 import { MarkdownContent } from "@/components/markdown-content"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { getApiContent, getAvailableApis } from "@/lib/api-content"
+import { useI18n } from "@/lib/i18n/i18n-context"
+import { useEffect, useState } from "react"
 
 export async function generateStaticParams() {
   const apis = getAvailableApis()
@@ -12,15 +16,27 @@ export async function generateStaticParams() {
   }))
 }
 
-export default async function ApiDocumentationPage({
+export default function ApiDocumentationPage({
   params,
 }: {
   params: { apiId: string }
 }) {
-  const apiContent = await getApiContent(params.apiId)
+  const { t } = useI18n()
+  const [apiContent, setApiContent] = useState<any>(null)
+  
+  useEffect(() => {
+    async function loadContent() {
+      const content = await getApiContent(params.apiId)
+      if (!content) {
+        notFound()
+      }
+      setApiContent(content)
+    }
+    loadContent()
+  }, [params.apiId])
 
   if (!apiContent) {
-    notFound()
+    return null
   }
 
   return (
@@ -32,9 +48,9 @@ export default async function ApiDocumentationPage({
         </div>
         <main className="flex-1 overflow-auto">
           <div className="mx-auto max-w-4xl p-4 md:p-8">
-            <h1 className="text-2xl md:text-3xl font-bold">{apiContent.name} API Documentation</h1>
+            <h1 className="text-2xl md:text-3xl font-bold">{apiContent.name} {t("api.documentation")}</h1>
             <p className="mt-2 text-muted-foreground">
-              Click "⚡ Copy for AI" on any section to get AI-optimized prompts
+              {t("api.copyPrompt")}
             </p>
 
             {apiContent.files.length === 1 ? (

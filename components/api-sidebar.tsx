@@ -2,6 +2,7 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
+import { useI18n } from "@/lib/i18n/i18n-context"
 import { cn } from "@/lib/utils"
 
 export type ApiItem = {
@@ -40,11 +41,12 @@ const apiList: ApiItem[] = [
 
 export function ApiSidebar() {
   const pathname = usePathname()
+  const { t } = useI18n()
 
   return (
     <div className="w-full md:w-64 border-r bg-muted/10">
       <div className="p-6">
-        <h2 className="text-lg font-semibold">Available APIs</h2>
+        <h2 className="text-lg font-semibold">{t("common.availableApis")}</h2>
       </div>
       <nav className="space-y-1 px-3">
         {apiList.map((api) => {
@@ -61,9 +63,9 @@ export function ApiSidebar() {
               <div className="flex items-center gap-3">
                 <span className="text-2xl">{api.icon}</span>
                 <div>
-                  <div className="font-medium">{api.name}</div>
+                  <div className="font-medium">{t(`apis.${api.id}.name`)}</div>
                   <div className="text-xs text-muted-foreground">
-                    {api.description}
+                    {t(`apis.${api.id}.description`)}
                   </div>
                 </div>
               </div>

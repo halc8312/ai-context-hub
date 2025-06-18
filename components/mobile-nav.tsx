@@ -4,6 +4,7 @@ import { useState } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { Button } from "@/components/ui/button"
+import { useI18n } from "@/lib/i18n/i18n-context"
 import { Menu, X } from "lucide-react"
 import { cn } from "@/lib/utils"
 
@@ -44,6 +45,7 @@ const apiList: ApiItem[] = [
 export function MobileNav() {
   const [isOpen, setIsOpen] = useState(false)
   const pathname = usePathname()
+  const { t } = useI18n()
 
   return (
     <div className="md:hidden">
@@ -54,7 +56,7 @@ export function MobileNav() {
         className="h-9 w-9"
       >
         {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-        <span className="sr-only">Toggle menu</span>
+        <span className="sr-only">{t("common.menu")}</span>
       </Button>
 
       {isOpen && (
@@ -65,18 +67,18 @@ export function MobileNav() {
               className="rounded-lg px-3 py-2 text-sm font-medium transition-colors hover:bg-muted"
               onClick={() => setIsOpen(false)}
             >
-              Home
+              {t("common.home")}
             </Link>
             <Link
               href="/roadmap"
               className="rounded-lg px-3 py-2 text-sm font-medium transition-colors hover:bg-muted"
               onClick={() => setIsOpen(false)}
             >
-              Roadmap
+              {t("common.roadmap")}
             </Link>
             <div className="my-2 h-px bg-border" />
             <div className="text-xs font-semibold text-muted-foreground px-3 py-1">
-              Available APIs
+              {t("common.availableApis")}
             </div>
             {apiList.map((api) => {
               const isActive = pathname.includes(`/api/${api.id}`)
@@ -92,9 +94,9 @@ export function MobileNav() {
                 >
                   <span className="text-xl">{api.icon}</span>
                   <div>
-                    <div className="font-medium">{api.name}</div>
+                    <div className="font-medium">{t(`apis.${api.id}.name`)}</div>
                     <div className="text-xs text-muted-foreground">
-                      {api.description}
+                      {t(`apis.${api.id}.description`)}
                     </div>
                   </div>
                 </Link>
