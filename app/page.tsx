@@ -6,14 +6,16 @@ export default function HomePage() {
   return (
     <div className="flex min-h-screen flex-col">
       <Header />
-      <div className="flex flex-1">
-        <ApiSidebar />
-        <main className="flex-1 p-8">
+      <div className="flex flex-1 flex-col md:flex-row">
+        <div className="hidden md:block">
+          <ApiSidebar />
+        </div>
+        <main className="flex-1 p-4 md:p-8">
           <div className="mx-auto max-w-4xl">
             <div className="text-center">
               <Zap className="mx-auto h-16 w-16 text-primary" />
-              <h1 className="mt-4 text-4xl font-bold">Welcome to API Context Hub</h1>
-              <p className="mt-4 text-lg text-muted-foreground">
+              <h1 className="mt-4 text-2xl md:text-4xl font-bold">Welcome to API Context Hub</h1>
+              <p className="mt-4 text-base md:text-lg text-muted-foreground">
                 Get up-to-date API documentation optimized for AI development tools
               </p>
             </div>

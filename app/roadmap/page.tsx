@@ -17,15 +17,15 @@ export default function RoadmapPage() {
   return (
     <div className="flex min-h-screen flex-col">
       <Header />
-      <main className="flex-1 p-8">
+      <main className="flex-1 p-4 md:p-8">
         <div className="mx-auto max-w-4xl">
-          <h1 className="text-3xl font-bold">Roadmap & API Requests</h1>
+          <h1 className="text-2xl md:text-3xl font-bold">Roadmap & API Requests</h1>
           <p className="mt-4 text-muted-foreground">
             Here's what we're planning to add next. Your feedback helps us prioritize!
           </p>
 
           <div className="mt-12">
-            <h2 className="text-2xl font-semibold">Coming Soon</h2>
+            <h2 className="text-xl md:text-2xl font-semibold">Coming Soon</h2>
             <div className="mt-6 grid gap-4 sm:grid-cols-2">
               {comingSoonApis.map((api) => (
                 <div key={api.name} className="rounded-lg border bg-card p-4">
@@ -37,7 +37,7 @@ export default function RoadmapPage() {
           </div>
 
           <div className="mt-12">
-            <h2 className="text-2xl font-semibold">Request an API</h2>
+            <h2 className="text-xl md:text-2xl font-semibold">Request an API</h2>
             <p className="mt-2 text-muted-foreground">
               Don't see the API you need? Let us know and we'll prioritize adding it.
             </p>
@@ -62,7 +62,7 @@ export default function RoadmapPage() {
           </div>
 
           <div className="mt-12">
-            <h2 className="text-2xl font-semibold">Recent Updates</h2>
+            <h2 className="text-xl md:text-2xl font-semibold">Recent Updates</h2>
             <div className="mt-6 space-y-4">
               <div className="rounded-lg border bg-card p-4">
                 <div className="flex items-center justify-between">

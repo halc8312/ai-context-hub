@@ -42,7 +42,7 @@ export function ApiSidebar() {
   const pathname = usePathname()
 
   return (
-    <div className="w-64 border-r bg-muted/10">
+    <div className="w-full md:w-64 border-r bg-muted/10">
       <div className="p-6">
         <h2 className="text-lg font-semibold">Available APIs</h2>
       </div>

@@ -26,11 +26,13 @@ export default async function ApiDocumentationPage({
   return (
     <div className="flex min-h-screen flex-col">
       <Header />
-      <div className="flex flex-1">
-        <ApiSidebar />
+      <div className="flex flex-1 flex-col md:flex-row">
+        <div className="hidden md:block">
+          <ApiSidebar />
+        </div>
         <main className="flex-1 overflow-auto">
-          <div className="mx-auto max-w-4xl p-8">
-            <h1 className="text-3xl font-bold">{apiContent.name} API Documentation</h1>
+          <div className="mx-auto max-w-4xl p-4 md:p-8">
+            <h1 className="text-2xl md:text-3xl font-bold">{apiContent.name} API Documentation</h1>
             <p className="mt-2 text-muted-foreground">
               Click "⚡ Copy for AI" on any section to get AI-optimized prompts
             </p>
@@ -44,7 +46,7 @@ export default async function ApiDocumentationPage({
               </div>
             ) : (
               <Tabs defaultValue={apiContent.files[0].filename} className="mt-8">
-                <TabsList className="grid w-full grid-cols-3">
+                <TabsList className="grid w-full grid-cols-1 md:grid-cols-3">
                   {apiContent.files.map((file) => (
                     <TabsTrigger key={file.filename} value={file.filename}>
                       {file.title}
