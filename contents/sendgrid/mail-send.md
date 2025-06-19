@@ -90,6 +90,163 @@ const msg = {
   ]
 };
 
-sgMail.send(msg);
+try {
+  await sgMail.send(msg);
+  console.log('Batch emails sent successfully');
+} catch (error) {
+  console.error('Batch send failed:', error.response?.body || error.message);
+}
+```
+
+## Email Activity API
+
+Query email activity and statistics.
+
+**Endpoint:** `GET /v3/messages`
+
+### Parameters
+
+| Name | Type | Required | Description |
+|------|------|----------|-------------|
+| query | string | No | Filter using query syntax |
+| limit | integer | No | Number of results (1-1000) |
+| next_page_token | string | No | Token for pagination |
+
+### Example with Pagination
+
+```javascript
+const client = require('@sendgrid/client');
+client.setApiKey(process.env.SENDGRID_API_KEY);
+
+async function getEmailActivity(email) {
+  const messages = [];
+  let nextPageToken = null;
+  
+  do {
+    try {
+      const request = {
+        url: '/v3/messages',
+        method: 'GET',
+        qs: {
+          query: `to="${email}"`,
+          limit: 100,
+          next_page_token: nextPageToken
+        }
+      };
+      
+      const [response, body] = await client.request(request);
+      messages.push(...body.messages);
+      nextPageToken = body.next_page_token;
+      
+    } catch (error) {
+      console.error('Failed to fetch activity:', error.response?.body || error.message);
+      break;
+    }
+  } while (nextPageToken);
+  
+  return messages;
+}
+```
+
+## Email Validation API
+
+Validate email addresses before sending.
+
+**Endpoint:** `POST /v3/validations/email`
+
+### Example
+
+```javascript
+const request = {
+  url: '/v3/validations/email',
+  method: 'POST',
+  body: {
+    email: 'test@example.com',
+    source: 'signup'
+  }
+};
+
+try {
+  const [response, body] = await client.request(request);
+  
+  if (body.result.verdict === 'Valid') {
+    console.log('Email is valid');
+    console.log('Score:', body.result.score);
+  } else {
+    console.log('Email validation failed:', body.result.verdict);
+  }
+} catch (error) {
+  console.error('Validation error:', error.message);
+}
+```
+
+## Sender Authentication
+
+Verify sender domains for better deliverability.
+
+**Endpoint:** `POST /v3/whitelabel/domains`
+
+### Example
+
+```javascript
+const request = {
+  url: '/v3/whitelabel/domains',
+  method: 'POST',
+  body: {
+    domain: 'example.com',
+    subdomain: 'mail',
+    default: true,
+    automatic_security: true
+  }
+};
+
+try {
+  const [response, body] = await client.request(request);
+  console.log('Domain authentication created:', body.id);
+  console.log('DNS records to add:', body.dns);
+} catch (error) {
+  console.error('Authentication failed:', error.response?.body || error.message);
+}
+```
+
+## Suppression Management
+
+Manage bounces, blocks, and unsubscribes.
+
+**Endpoint:** `GET /v3/suppression/bounces`
+
+### Example
+
+```javascript
+// Get bounced emails
+const request = {
+  url: '/v3/suppression/bounces',
+  method: 'GET',
+  qs: {
+    start_time: 1718764800,
+    end_time: 1718851200,
+    limit: 100
+  }
+};
+
+try {
+  const [response, body] = await client.request(request);
+  
+  body.forEach(bounce => {
+    console.log(`Email: ${bounce.email}`);
+    console.log(`Reason: ${bounce.reason}`);
+    console.log(`Created: ${new Date(bounce.created * 1000).toISOString()}`);
+  });
+} catch (error) {
+  console.error('Failed to fetch bounces:', error.message);
+}
+
+// Remove email from suppression list
+const deleteRequest = {
+  url: '/v3/suppression/bounces/test@example.com',
+  method: 'DELETE'
+};
+
+await client.request(deleteRequest);
 ```
 
