@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import { ThemeProvider } from '@/components/theme-provider'
 import { I18nProvider } from '@/lib/i18n/i18n-context'
+import { Toaster } from 'sonner'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -27,6 +28,7 @@ export default function RootLayout({
         >
           <I18nProvider>
             {children}
+            <Toaster richColors position="bottom-right" />
           </I18nProvider>
         </ThemeProvider>
       </body>

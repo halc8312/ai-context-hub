@@ -2,6 +2,7 @@
 
 import { Header } from "@/components/header"
 import { ApiSidebar } from "@/components/api-sidebar"
+import { ExportAllButton } from "@/components/export-all-button"
 import { useI18n } from "@/lib/i18n/i18n-context"
 import { Zap } from "lucide-react"
 
@@ -60,6 +61,9 @@ export default function HomePage() {
               <p className="mt-2 text-muted-foreground">
                 {t("home.getStartedDesc")}
               </p>
+              <div className="mt-6">
+                <ExportAllButton size="lg" />
+              </div>
             </div>
           </div>
         </main>

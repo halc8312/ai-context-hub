@@ -28,7 +28,18 @@ export const translations = {
       copyPrompt: 'Click "⚡ Copy for AI" on any section to get AI-optimized prompts',
       copyForAi: "Copy for AI",
       copiedToClipboard: "Copied to clipboard!",
-      clickToCopy: "Click to copy AI-optimized prompt"
+      clickToCopy: "Click to copy AI-optimized prompt",
+      export: "Export",
+      exportAs: "Export as",
+      exportFormat: {
+        json: "JSON",
+        markdown: "Markdown",
+        text: "Plain Text",
+        xml: "XML"
+      },
+      exportSuccess: "Documentation exported successfully!",
+      exportAll: "Export All APIs",
+      selectFormat: "Select export format"
     },
     roadmap: {
       title: "Roadmap & API Requests",
@@ -124,7 +135,18 @@ export const translations = {
       copyPrompt: '各セクションの"⚡ AIにコピー"をクリックして、AI最適化されたプロンプトを取得',
       copyForAi: "AIにコピー",
       copiedToClipboard: "クリップボードにコピーしました！",
-      clickToCopy: "クリックしてAI最適化プロンプトをコピー"
+      clickToCopy: "クリックしてAI最適化プロンプトをコピー",
+      export: "エクスポート",
+      exportAs: "形式を選択してエクスポート",
+      exportFormat: {
+        json: "JSON",
+        markdown: "Markdown",
+        text: "プレーンテキスト",
+        xml: "XML"
+      },
+      exportSuccess: "ドキュメントを正常にエクスポートしました！",
+      exportAll: "すべてのAPIをエクスポート",
+      selectFormat: "エクスポート形式を選択"
     },
     roadmap: {
       title: "ロードマップ & APIリクエスト",

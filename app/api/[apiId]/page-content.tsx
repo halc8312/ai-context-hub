@@ -4,6 +4,7 @@ import { Header } from "@/components/header"
 import { ApiSidebar } from "@/components/api-sidebar"
 import { MarkdownContent } from "@/components/markdown-content"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { ExportButton } from "@/components/export-button"
 import { useI18n } from "@/lib/i18n/i18n-context"
 
 interface ApiContentPageProps {
@@ -30,10 +31,15 @@ export function ApiContentPage({ apiContent }: ApiContentPageProps) {
         </div>
         <main className="flex-1 overflow-auto">
           <div className="mx-auto max-w-4xl p-4 md:p-8">
-            <h1 className="text-2xl md:text-3xl font-bold">{apiContent.name} {t("api.documentation")}</h1>
-            <p className="mt-2 text-muted-foreground">
-              {t("api.copyPrompt")}
-            </p>
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
+              <div>
+                <h1 className="text-2xl md:text-3xl font-bold">{apiContent.name} {t("api.documentation")}</h1>
+                <p className="mt-2 text-muted-foreground">
+                  {t("api.copyPrompt")}
+                </p>
+              </div>
+              <ExportButton apiName={apiContent.name} content={apiContent} />
+            </div>
 
             {apiContent.files.length === 1 ? (
               <div className="mt-8">
