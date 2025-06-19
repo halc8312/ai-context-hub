@@ -69,6 +69,10 @@ export const translations = {
       supabase: {
         name: "Supabase",
         description: "Backend as a Service"
+      },
+      openai: {
+        name: "OpenAI",
+        description: "AI models"
       }
     },
     comingSoonApis: {
@@ -83,10 +87,6 @@ export const translations = {
       notion: {
         name: "Notion API",
         description: "Workspace management"
-      },
-      openai: {
-        name: "OpenAI API",
-        description: "AI models"
       },
       firebase: {
         name: "Firebase",
@@ -176,6 +176,10 @@ export const translations = {
       supabase: {
         name: "Supabase",
         description: "バックエンドサービス"
+      },
+      openai: {
+        name: "OpenAI",
+        description: "AIモデル"
       }
     },
     comingSoonApis: {
@@ -190,10 +194,6 @@ export const translations = {
       notion: {
         name: "Notion API",
         description: "ワークスペース管理"
-      },
-      openai: {
-        name: "OpenAI API",
-        description: "AIモデル"
       },
       firebase: {
         name: "Firebase",

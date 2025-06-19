@@ -12,7 +12,6 @@ export default function RoadmapPage() {
     { id: "slack", name: "Slack API", description: "Team collaboration" },
     { id: "googleMaps", name: "Google Maps API", description: "Mapping services" },
     { id: "notion", name: "Notion API", description: "Workspace management" },
-    { id: "openai", name: "OpenAI API", description: "AI models" },
     { id: "firebase", name: "Firebase", description: "App development platform" },
     { id: "auth0", name: "Auth0", description: "Authentication & authorization" },
     { id: "algolia", name: "Algolia", description: "Search infrastructure" },
