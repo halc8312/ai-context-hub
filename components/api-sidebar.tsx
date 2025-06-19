@@ -36,6 +36,12 @@ const apiList: ApiItem[] = [
     name: "Supabase",
     description: "Backend as a Service",
     icon: "🗄️"
+  },
+  {
+    id: "openai",
+    name: "OpenAI",
+    description: "AI models",
+    icon: "🤖"
   }
 ]
 
