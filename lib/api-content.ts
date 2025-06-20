@@ -27,6 +27,10 @@ const apiMetadata: Record<string, { name: string; description: string }> = {
   supabase: {
     name: 'Supabase',
     description: 'Backend as a Service'
+  },
+  openai: {
+    name: 'OpenAI',
+    description: 'AI models and APIs'
   }
 }
 
